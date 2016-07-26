@@ -1,0 +1,22 @@
+repeat
+nbr = turtle.getItemCount(2)
+for i = 1, nbr-1, 1 do
+
+  if turtle.getFuelLevel() == 0 then
+    turtle.select(1)
+    turtle.refuel(1)
+  end
+turtle.select(2)
+turtle.up()
+turtle.placeDown()
+end
+
+for i = 1, nbr-1, 1 do
+  if turtle.getFuelLevel() == 0 then
+    turtle.select(1)
+    turtle.refuel(1)
+  end
+  turtle.digDown()
+  turtle.down()
+end
+until nbr == 0

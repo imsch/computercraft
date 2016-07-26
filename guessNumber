@@ -1,0 +1,74 @@
+while true do
+term.clear()
+term.setCursorPos(1,1)
+textutils.slowPrint("Welcome to Guess the Number!")
+sleep(3)
+
+term.clear()
+term.setCursorPos(1,1)
+textutils.slowPrint("In this Game You must find the right number in 6 tries\nThe number ranges from 1 to 20!\n")
+sleep(3)
+
+term.clear()
+term.setCursorPos(1,1)
+
+number = math.random(1,20)
+guessedRight = false
+
+  for i = 0, 6, 1 do
+
+    textutils.slowPrint("Please enter your guess")
+repeat
+    guess = io.read()
+    guess = tonumber(guess)
+  until guess ~= nil and guess > 0
+
+
+    if guess == number then
+      term.clear()
+      term.setCursorPos(1,1)
+      textutils.slowPrint("You got it right!\n")
+      textutils.slowPrint("The number was ")
+      print(number)
+      guessedRight = true
+      sleep(3)
+      break
+    end
+
+    if guess < number then
+      term.clear()
+      term.setCursorPos(1,1)
+      textutils.slowPrint("Your number was too small!")
+      sleep(3)
+    end
+
+    if guess > number then
+      term.clear()
+      term.setCursorPos(1,1)
+      textutils.slowPrint("Your number was too big!")
+    end
+  end
+  if guessedRight == false then
+    textutils.slowPrint("You were not able to solve this in time...\nThe number was")
+    print("number")
+  end
+  textutils.slowPrint("Do you want to restart?\n1. Yes\n2.No")
+  choice = io.read()
+  choice = tonumber(choice)
+  if choice > 2 then
+    textutils.slowPrint("Unknown command!!!\nEmergency Exit initiated!")
+    break
+  end
+  if choice < 1 then
+    textutils.slowPrint("Unknown command!!!\nEmergency Exit initiated!")
+    break
+  end
+  if choice == 2 then
+    textutils.slowPrint("Exiting Programm")
+    break
+  end
+  if choice == 1 then
+    textutils.slowPrint("restarting . . .")
+  end
+
+end

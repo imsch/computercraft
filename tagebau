@@ -1,0 +1,86 @@
+function steps(num)
+  local number = num
+  for i = 1, num - 1, 1 do
+
+    if turtle.getFuelLevel() == 0 then
+      turtle.refuel(1)
+    end
+
+    turtle.forward()
+  end
+end
+
+function dig(num)
+  local number = num
+  for i=1, number, 1 do
+
+    if turtle.getFuelLevel() == 0 then
+      turtle.refuel(1)
+    end
+
+      repeat
+        if turtle.detect() then
+          turtle.dig()
+          sleep(0.25)
+        end
+      until turtle.detect() == false
+      turtle.forward()
+
+  end
+  return true
+end
+
+
+function layer(num)
+
+  local lngth = num - 1
+  local wdth = num
+
+
+  for i=1, wdth, 1 do
+    if turtle.getFuelLevel() == 0 then
+      turtle.refuel(1)
+    end
+
+    dig(lngth)
+    if turnedRight and i ~= wdth then
+      turtle.turnLeft()
+      dig(1)
+      turtle.turnLeft()
+      turnedRight=false
+    elseif not turnedRight and i ~= wdth then
+      turtle.turnRight()
+      dig(1)
+      turtle.turnRight()
+      turnedRight=true
+    elseif turnedRight then
+      turtle.turnRight()
+      steps(wdth-1)
+      turtle.turnRight()
+      turnedRight = false
+    elseif not turnedRight then
+      turtle.turnLeft()
+      steps(wdth-1)
+      turtle.turnLeft()
+      turnedRight = true
+    end
+  end
+end
+
+print("Welche breite soll der Tagebau haben?")
+
+  repeat
+    breite = io.read()
+    breite = tonumber(breite)
+  until breite ~= nil and breite > 0
+
+turnedRight = false
+
+while  breite > 1 do
+  layer(breite)
+  turtle.forward()
+  turtle.digDown()
+  sleep(0.5)
+  turtle.down()
+  breite = breite -2
+end

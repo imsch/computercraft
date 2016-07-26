@@ -1,0 +1,160 @@
+--start der funktion
+function upDown(heigth)
+
+  heigth = tonumber(heigth)
+
+  if turtle.getFuelLevel() == 0 then
+
+    turtle.refuel(1)
+
+  end
+
+
+  while turtle.detect() do
+
+    turtle.dig()
+
+    sleep(0.25)
+  end
+
+  for i=1, heigth-1, 1 do
+
+    if turtle.getFuelLevel() == 0 then
+
+      turtle.refuel(1)
+
+    end
+
+    turtle.up()
+
+    while turtle.detect() do
+
+      turtle.dig()
+
+      sleep(0.25)
+
+    end
+
+
+end
+
+  for i=1, heigth -1 , 1 do
+
+    if turtle.getFuelLevel() == 0 then
+
+      turtle.refuel(1)
+
+    end
+
+    turtle.down()
+
+  end
+
+if turtle.detect() ==false then
+
+  turtle.forward()
+else
+  while turtle.detect() do
+
+    turtle.dig()
+
+    sleep(0.25)
+
+  end
+turtle.forward()
+end
+
+end
+-- ende der funktion
+
+
+
+print("Wie viele Stollen moechten Sie nach rechts graben lassen?")
+
+repeat
+
+  nbr = io.read()
+
+  nbr = tonumber(nbr)
+
+  until nbr ~= nil and nbr > 0
+
+
+
+print("Welche L??nge sollen sie haben?")
+
+repeat
+
+  lngth = io.read()
+
+  lngth = tonumber(lngth)
+
+until lngth ~= nil and lngth > 0
+
+
+
+print("Wie hoch sollen sie sein?")
+
+repeat
+
+  hgth = io.read()
+
+  hgth = tonumber(hgth)
+
+until hgth ~= nil and hgth > 0
+
+
+
+for i = 1 , nbr, 1 do
+
+
+
+  if turtle.getFuelLevel() == 0 then
+
+    turtle.refuel(1)
+
+  end
+
+
+
+  for i = 1 , lngth, 1 do
+
+    if turtle.getFuelLevel() == 0 then
+
+      turtle.refuel(1)
+
+    end
+
+    upDown(hgth)
+
+  end
+
+  turtle.digUp()
+
+  for i = 1, lngth, 1 do
+
+    if turtle.getFuelLevel() == 0 then
+
+      turtle.refuel(1)
+
+    end
+
+    turtle.back()
+
+  end
+
+
+
+turtle.turnRight()
+
+upDown(hgth)
+
+upDown(hgth)
+
+upDown(hgth)
+
+turtle.turnLeft()
+
+
+
+end
