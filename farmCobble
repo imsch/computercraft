@@ -1,0 +1,3 @@
+repeat
+  turtle.digDown()
+until turtle.getItemCount(16)  == 64
